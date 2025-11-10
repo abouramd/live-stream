@@ -72,24 +72,6 @@ export default function StreamPage() {
         {new Date(match.date).toLocaleString()}
       </p>
 
-      {/* --- Stream Player --- */}
-      <Card className="mb-6">
-        <CardContent className="p-0 aspect-video">
-          {selectedStreamUrl ? (
-            <iframe
-              src={selectedStreamUrl}
-              className="w-full h-full"
-              frameBorder="0"
-              allowFullScreen
-            ></iframe>
-          ) : (
-            <div className="flex items-center justify-center w-full h-full bg-secondary text-secondary-foreground">
-              Select a source and stream to begin.
-            </div>
-          )}
-        </CardContent>
-      </Card>
-
       {/* --- Selections --- */}
       <div className="grid gap-6 md:grid-cols-2">
         {/* Source Selection */}
@@ -148,6 +130,25 @@ export default function StreamPage() {
           </CardContent>
         </Card>
       </div>
+      
+      {/* --- Stream Player --- */}
+      <Card className="mt-6">
+        <CardContent className="p-0 aspect-video">
+          {selectedStreamUrl ? (
+            <iframe
+              src={selectedStreamUrl}
+              className="w-full h-full"
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            <div className="flex items-center justify-center w-full h-full bg-secondary text-secondary-foreground">
+              Select a source and stream to begin.
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
     </main>
   );
 }
