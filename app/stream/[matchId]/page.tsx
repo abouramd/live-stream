@@ -7,6 +7,8 @@ import type { APIMatch, Stream } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { notFound, useParams } from "next/navigation";
+import { ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 // Helper component for loading
 function LoadingSpinner() {
@@ -132,6 +134,9 @@ export default function StreamPage() {
                       onClick={() => handleStreamClick(stream)}
                     >
                       {stream.language} {stream.hd && "(HD)"}
+                      <a href={stream.embedUrl} target="_blank" className="ml-auto">
+                       <ExternalLink className="ml-2" />
+                       </a>
                     </Button>
                   ))
                 ) : (
