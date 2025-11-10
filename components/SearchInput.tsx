@@ -1,8 +1,7 @@
 "use client"; // This must be a Client Component
 
 import { useCallback, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
