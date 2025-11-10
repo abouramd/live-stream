@@ -3,7 +3,8 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Sport, getSports } from "@/lib/api";
+import { getSports } from "@/lib/api";
+import type { Sport } from "@/lib/types";
 import {
   Select,
   SelectContent,

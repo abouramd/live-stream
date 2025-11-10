@@ -3,15 +3,19 @@ import { getMatches, getSportById, getSports } from "@/lib/api";
 import { MatchCard } from "@/components/match-card";
 import { SportSelector } from "@/components/sport-selector";
 import { notFound } from "next/navigation";
+import SearchInput from "@/components/SearchInput";
 
 // Props definition
 interface SportPageProps {
   params: Promise<{
     sportId: string;
   }>;
+  searchParams: Promise<{
+    q?: string;
+  }>;
 }
 
-export default async function SportPage({ params }: SportPageProps) {
+export default async function SportPage({ params, searchParams }: SportPageProps) {
   const { sportId } = await params;
 
   const sportData = await getSportById(sportId);
@@ -21,12 +25,21 @@ export default async function SportPage({ params }: SportPageProps) {
   }
 
   // Fetch matches for the specific sport
-  const matches = await getMatches(sportId);
+  let matches = await getMatches(sportId);
 
+  // filter using query 
+  const { q: query } = await searchParams;
+  if (query) {
+    matches = matches.filter((match) =>
+      match.title.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+  
   return (
     <main className="container p-4 mx-auto">
       <div className="mb-6 flex items-center justify-between">
         <h1 className="mb-6 text-3xl font-bold">{sportData.name} Matches</h1>
+        <SearchInput />
         <SportSelector selectedSportId={sportId}/>
       </div>
 

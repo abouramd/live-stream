@@ -2,15 +2,28 @@
 import { getMatches } from "@/lib/api";
 import { MatchCard } from "@/components/match-card";
 import { SportSelector } from "@/components/sport-selector";
+import SearchInput from "@/components/SearchInput";
 
-export default async function HomePage() {
+export default async function HomePage({ searchParams } : { searchParams: Promise<{ q?: string }>}) {
   // Fetch live matches on the server
-  const liveMatches = await getMatches("live");
+  let liveMatches = await getMatches("all-today");
+
+  // filter using query 
+  const { q: query } = await searchParams;
+  console.log(query, liveMatches.length);
+  if (query) {
+    liveMatches = liveMatches.filter((match) =>
+      match.title.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+  console.log(liveMatches.length);
+
 
   return (
     <main className="container p-4 mx-auto">
       <div className="mb-6 flex items-center justify-between">
         <h1 className="mb-6 text-3xl font-bold">Live Matches</h1>
+        <SearchInput />
         <SportSelector />
       </div>
 

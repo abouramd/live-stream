@@ -1,54 +1,12 @@
-// lib/api.ts
+import { APIMatch, Sport, Stream } from "@/lib/types";
 
 // --- Base URL ---
 const API_BASE_URL = "https://streamed.pk";
-
-// --- Types (from your documentation) ---
-export interface APIMatch {
-  id: string;
-  title: string;
-  category: string;
-  date: number;
-  poster?: string;
-  popular: boolean;
-  teams?: {
-    home?: {
-      name: string;
-      badge: string;
-    };
-    away?: {
-      name: string;
-      badge: string;
-    };
-  };
-  sources: {
-    source: string;
-    id: string;
-  }[];
-}
-
-export interface Sport {
-  id: string;
-  name: string;
-}
-
-// NEW: Stream interface
-export interface Stream {
-  id: string;
-  streamNo: number;
-  language: string;
-  hd: boolean;
-  embedUrl: string;
-  source: string;
-}
-
-// --- API Fetch Functions ---
 
 /**
  * Fetches all available sport categories.
  */
 export async function getSports(): Promise<Sport[]> {
-  // ... (same as before)
   try {
     const res = await fetch(`${API_BASE_URL}/api/sports`);
     if (!res.ok) throw new Error("Failed to fetch sports");

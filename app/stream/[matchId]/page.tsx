@@ -3,12 +3,11 @@
 
 import { useEffect, useState } from "react";
 import { getMatchById, getStreams } from "@/lib/api";
-import type { APIMatch, Stream } from "@/lib/api";
+import type { APIMatch, Stream } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { notFound, useParams } from "next/navigation";
 import { ExternalLink } from "lucide-react";
-import Link from "next/link";
 
 // Helper component for loading
 function LoadingSpinner() {

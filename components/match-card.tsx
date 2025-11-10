@@ -1,6 +1,7 @@
 // components/match-card.tsx
-import Image from "next/image";
-import { APIMatch } from "@/lib/api";
+"use client";
+
+import { APIMatch } from "@/lib/types";
 import { getBadgeUrl } from "@/lib/api";
 import {
   Card,
