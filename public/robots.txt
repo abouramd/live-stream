@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /stream/
+
+Sitemap: https://live-stream-snowy.vercel.app/sitemap.xml
